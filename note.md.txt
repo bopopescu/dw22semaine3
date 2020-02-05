@@ -1,0 +1,38 @@
+# Python / Mysql
+
+## Install :
+* $ _sudo pip3 install PyMySQL_
+* _pip3 list_ 
+    * _unistall package_ 
+
+### venv :
+* _apt-get install python3-venv_
+* _python3 -m venv env
+* _source env/bin/activate_
+* _deactivate_
+
+
+
+
+# Mysql
+
+## Interpreter
+* _create database [db_name]_
+* _CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password'_
+* _GRANT ALL PRIVILEGES ON db_name.table_name TO 'database_user'@'localhost'_
+* _REVOKE ALL PRIVILEGES ON database_name.* FROM 'database_user'@'localhost'_
+*_DROP USER 'user'@'localhost'_
+*_ SHOW GLOBAL VARIABLES LIKE 'PORT'_
+*_CREATE IF NOT EXISTS TABLE `client` (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(50),
+  email VARCHAR(50),
+);_
+
+
+# GIT
+* _git init_
+* _git add README.md_
+* _git commit -m "first commit"_
+* _git remote add origin_
+* _git push -u origin master_
