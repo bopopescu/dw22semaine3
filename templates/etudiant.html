@@ -1,0 +1,11 @@
+$def with (to_render)
+<h3>Ajoutez un étudiant</h3>
+<form method="POST">
+    $:to_render['form'].render()
+</form>
+
+$if "post" in to_render:
+    $ post = to_render['post']
+    <p>$post['prenom'] ajouté à la base de données</p>
+$else:
+    <p>post not exist</p>

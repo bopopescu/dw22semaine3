@@ -7,7 +7,7 @@
 
 ### venv :
 * _apt-get install python3-venv_
-* _python3 -m venv env
+* _python3 -m venv env_
 * _source env/bin/activate_
 * _deactivate_
 
@@ -21,16 +21,17 @@
 * _CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password'_
 * _GRANT ALL PRIVILEGES ON db_name.table_name TO 'database_user'@'localhost'_
 * _REVOKE ALL PRIVILEGES ON database_name.* FROM 'database_user'@'localhost'_
-*_DROP USER 'user'@'localhost'_
-*_ SHOW GLOBAL VARIABLES LIKE 'PORT'_
-*_CREATE IF NOT EXISTS TABLE `client` (
+* _DROP USER 'user'@'localhost'_
+* _ SHOW GLOBAL VARIABLES LIKE 'PORT'_
+* _CREATE IF NOT EXISTS TABLE `client` (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   nom VARCHAR(50),
   email VARCHAR(50),
 );_
-
+* _AlTER TABLE _notes ADD CONSTRAINT FK_etudiant FOREIGN KEY (etudiant_id) REFERENCES _etudiants(id);_
 
 # GIT
+
 * _git init_
 * _git add README.md_
 * _git commit -m "first commit"_
