@@ -1,5 +1,29 @@
-$def with (di)
+$def with (to_render)
 
-<h3>Bienvenue sur l'appli $di['a'] du Groupe $di['b']</h3>
-<p>Veuillez naviguez pour utiliser les fonctionnalités de l'application</p>
+<h3>Bienvenue sur l'appli DW22 semaine3</h3>
+<p>Veuillez naviguer pour utiliser les fonctionnalités de l'application</p>
 <p>Si vous voyez cette pages c'est que la base de données est bien initialisée</p>
+
+$if "_etudiants" in to_render:
+    <h3>Voici la liste de tout les étudiants enregistrés</h3>
+    $ etudiants = to_render['_etudiants']
+    <ul>
+    $for etu in etudiants:
+        <a href="">
+            <li> $etu : $etudiants[etu].nom</li>
+        </a>
+    </ul>
+
+    <div class="card bg-secondary" style="width:200px">
+      <img class="card-img-top"  alt="Card image" width="150px" height="150px">
+      <div class="card-body">
+        <h4 class="card-title">$etu</h4>
+        <p class="card-text">$etudiants[etu].nom $etudiants[etu].prenom, $etudiants[etu].age ans</p>
+        <a href="/info/:" class="btn btn-primary">See Profile</a>
+      </div>
+    </div>
+$else:
+    <p>Aucun étudiant enregistrer, ajouter un Etudiant ?</p>
+
+<br>
+<a type="button" class="btn btn-primary" href="/add/etudiant">Ajouter un Etudiant</a>

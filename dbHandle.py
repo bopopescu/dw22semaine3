@@ -3,6 +3,7 @@
 import web
 import pymysql
 import mysql.connector
+from models.Etudiant import Etudiant
 
 class DBHandle:
 
@@ -31,6 +32,7 @@ class DBHandle:
 
         self.cursor = self.mysqlco.cursor()
         DBHandle.status = self.table_init()
+        self.load_db()
 
 
     def check_tables(self):
@@ -58,7 +60,7 @@ class DBHandle:
 
     def info_tables(self):
         if DBHandle.status:
-            info_tables = [] 
+            info_tables = []
             for x in DBHandle.tables:
                 query = "describe " + x
                 print(query)
@@ -67,6 +69,20 @@ class DBHandle:
                 info_tables.append(self.cursor)
         return info_tables
 
+    def add_etudiant(self, etudiant):
+        """ Ajouter Etudiant """
+        sequence_id = self.webdb.insert('_etudiants', id=etudiant.id, \
+            nom=etudiant.nom, prenom=etudiant.prenom, age=etudiant.age)
+        print(sequence_id)
+        return 'ok'
+
+    def load_db(self):
+        _etudiants = self.webdb.select('_etudiants')
+
+        for etu in _etudiants:
+            Etudiant(etu['nom'], etu['prenom'], etu['age'], etu['id'])
+
+        # Ajout de note et cours plus tard
 
 if __name__ == "__main__":
     print('hllo')

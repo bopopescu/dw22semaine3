@@ -13,5 +13,6 @@ class App:
     def __init__(self):
         pass
 
-    def add_etudiant(self):
-        """Import new etudiant in DB"""
+    def add_etudiant(self, etudiant):
+        """Appel dbHandle app instance"""
+        return App.dbHandle.add_etudiant(etudiant)

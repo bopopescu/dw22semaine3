@@ -4,7 +4,7 @@ sys.path.append('..')
 import web
 from web import form
 from app import App
-from models.Etudiant import Etudiant as model
+from models.Etudiant import Etudiant as Model
 
 
 
@@ -37,8 +37,11 @@ class Etudiant:
             App.render.etudiant(self.to_render)
         else:
             self.to_render['post'] = web.input()
+            post = self.to_render['post']
+            self.init_model(post['nom'], post['prenom'], post['age'])
         return App.render.etudiant(self.to_render)
 
     def init_model(self, nom, prenom, age):
         """Init le modele etudiant"""
-        return model(nom, prenom, age)
+        new_etudiant = Model(nom, prenom, age)
+        return App().add_etudiant(new_etudiant)
