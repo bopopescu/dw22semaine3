@@ -1,0 +1,16 @@
+$def with(to_render)
+
+$if "no_cours" in to_render:
+    <p>Vous ne pouvez pas ajouter de notes car aucun cours n'est enregistrer, ajouter un Cours ?</p>
+    <br>
+    <a type="button" class="btn btn-primary" href="/add/cours">Ajouter un Cours</a>
+$else:
+    <h3>Ajoutez des notes à $to_render['etu'].nom $to_render['etu'].prenom</h3>
+    <form method="POST">
+        $:to_render['form'].render()
+    </form>
+
+$if "notes" in to_render:
+    $for note in to_render["notes"]:
+        <p>$to_render['etu'].prenom $to_render['etu'].nom à obtenue la note de $note.note en $note.cours_id
+        </p>

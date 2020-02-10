@@ -5,14 +5,14 @@ class Etudiant:
     """Class Model Etudiant"""
     _etudiant_instances = {}
 
-    def __init__(self, nom, prenom, age, make_id=True):
+    def __init__(self, nom, prenom, age, make_id=False):
         self.nom = nom
         self.prenom = prenom
         self.age = age
-        if make_id is not True:
-            self.id = make_id
-        else:
+        if make_id is False:
             self.id = self.make_id()
+        else:
+            self.id = make_id
         Etudiant._etudiant_instances[self.id] = self
 
     def make_id(self):

@@ -16,3 +16,9 @@ class App:
     def add_etudiant(self, etudiant):
         """Appel dbHandle app instance"""
         return App.dbHandle.add_etudiant(etudiant)
+
+    def add_cours(self, cours):
+        return App.dbHandle.add_cours(cours)
+
+    def add_note(self, note):
+        return App.dbHandle.add_note(note)

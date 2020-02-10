@@ -26,7 +26,6 @@ class Etudiant:
             form.Textbox("age", vage, description="Age de l'étudiant"),
             form.Button("valider", type="submit", description="Valider")
         )
-
         return add_etudiant_form
 
     def GET(self):

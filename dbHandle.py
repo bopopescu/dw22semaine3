@@ -4,6 +4,8 @@ import web
 import pymysql
 import mysql.connector
 from models.Etudiant import Etudiant
+from models.Cours import Cours
+from models.Note import Note
 
 class DBHandle:
 
@@ -76,11 +78,31 @@ class DBHandle:
         print(sequence_id)
         return 'ok'
 
+    def add_cours(self, cours):
+        """ Ajouter Etudiant """
+        sequence_id = self.webdb.insert('_cours', id=cours.id, \
+            nom=cours.nom, annee=cours.annee)
+        print(sequence_id)
+        return 'ok'
+
+    def add_note(self, note):
+        sequence_id = self.webdb.insert('_notes', note=note.note, cours_id=note.cours_id, \
+            etudiant_id=note.etudiant_id)
+        print(sequence_id)
+        return 'ok'
+
     def load_db(self):
         _etudiants = self.webdb.select('_etudiants')
-
+        _cours = self.webdb.select('_cours')
+        _notes = self.webdb.select('_notes')
         for etu in _etudiants:
             Etudiant(etu['nom'], etu['prenom'], etu['age'], etu['id'])
+
+        for c in _cours:
+            Cours(c['nom'], c['annee'], c['id'])
+
+        for note in _notes:
+            Note(note['note'], note['etudiant_id'], note['cours_id'], id_model=True)
 
         # Ajout de note et cours plus tard
 

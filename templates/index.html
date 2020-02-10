@@ -1,29 +1,47 @@
 $def with (to_render)
 
 <h3>Bienvenue sur l'appli DW22 semaine3</h3>
-<p>Veuillez naviguer pour utiliser les fonctionnalités de l'application</p>
-<p>Si vous voyez cette pages c'est que la base de données est bien initialisée</p>
+<p>Veuillez naviguer pour utiliser les fonctionnalités de l'application, si vous voyez cette pages c'est que la base de données est bien initialisée</p>
 
-$if "_etudiants" in to_render:
-    <h3>Voici la liste de tout les étudiants enregistrés</h3>
-    $ etudiants = to_render['_etudiants']
-    <ul>
-    $for etu in etudiants:
-        <a href="">
-            <li> $etu : $etudiants[etu].nom</li>
-        </a>
-    </ul>
 
-    <div class="card bg-secondary" style="width:200px">
-      <img class="card-img-top"  alt="Card image" width="150px" height="150px">
-      <div class="card-body">
-        <h4 class="card-title">$etu</h4>
-        <p class="card-text">$etudiants[etu].nom $etudiants[etu].prenom, $etudiants[etu].age ans</p>
-        <a href="/info/:" class="btn btn-primary">See Profile</a>
-      </div>
+$if "_cours" in to_render:
+    <h3>Voici la liste de tout les cours enregistrés</h3>
+    <p>Vous pouvez consulter les notes des cours ou bien les supprimer avec leurs notes associées</p>
+    <div class="row">
+        $ cours = to_render['_cours']
+        $for c in cours:
+            <div class="card bg-secondary" style="width: 200px">
+              <div class="card-body">
+                <h4 class="card-title">$cours[c].nom $cours[c].annee</h4>
+                <a href="#" class="btn btn-info">Notes</a>
+                <a href="#" class="btn btn-danger">Supprimer</a>
+              </div>
+            </div>
     </div>
 $else:
-    <p>Aucun étudiant enregistrer, ajouter un Etudiant ?</p>
+    <p>Aucun cours enregistré, ajouter un Cours ?</p>
+
+<br>
+<a type="button" class="btn btn-primary" href="/add/cours">Ajouter un Cours</a>
+<br>
+<br>
+$if "_etudiants" in to_render:
+    <h3>Voici la liste de tout les étudiants enregistrés</h3>
+    <p>Consulter leurs profils et ajoutez leurs des notes</p>
+    $ etudiants = to_render['_etudiants']
+    <div class="row">
+    $for etu in etudiants:
+        <div class="card bg-secondary" style="width:200px">
+          <img class="card-img-top"  alt="Card image" width="150px" height="150px">
+          <div class="card-body">
+            <h4 class="card-title">$etu</h4>
+            <p class="card-text">$etudiants[etu].nom $etudiants[etu].prenom, $etudiants[etu].age ans</p>
+            <a href="/profile/$etudiants[etu].id" class="btn btn-primary">See Profile</a>
+          </div>
+        </div>
+    </div>
+$else:
+    <p>Aucun étudiant enregistré, ajouter un Etudiant ?</p>
 
 <br>
 <a type="button" class="btn btn-primary" href="/add/etudiant">Ajouter un Etudiant</a>

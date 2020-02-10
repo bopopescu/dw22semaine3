@@ -1,0 +1,15 @@
+$def with (to_render)
+
+<h3>Ajoutez un cours</h3>
+<form method="POST">
+    $:to_render['form'].render()
+</form>
+
+$if "post" in to_render:
+    $ post = to_render['post']
+    $if post == False:
+        <p>Il ne peut y avoir deux cours identique la même année</p>
+    $else:
+        <p>Le cours de $post['nom'] ajouté à la base de données</p>
+$else:
+    <p>post not exist</p>
